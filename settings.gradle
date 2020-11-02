@@ -1,0 +1,67 @@
+// buildSrc 是 reserved name（系统保留名字），叫这个名字的 module 系统会自动编译在 settings.gradle 的配置阶段
+//include ':buildSrc'
+//include ':mylibrary'
+include ':libGradlePluginTest'
+include ':app'
+rootProject.name = "TestGradlePlugin"
+gradle.beforeSettings {
+    println "beforeSettings"
+}
+
+gradle.buildStarted {
+//    println "buildStarted"
+}
+
+gradle.settingsEvaluated {
+//    println "settingsEvaluated"
+}
+gradle.projectsLoaded {
+//    println "projectsLoaded"
+}
+// Configure project
+gradle.beforeProject {
+//    println "beforeProject"
+}
+gradle.projectsEvaluated {
+//    println "projectsEvaluated"
+}
+//project("").projectDir = new File("")
+
+//gradle.taskGraph.whenReady {task->
+//    println "${project.name}}"
+//}
+
+//gradle.taskGraph.beforeTask {
+//    println "taskGraph beforeTask"
+//}
+//
+//gradle.taskGraph.afterTask {
+//    println "taskGraph afterTask"
+//}
+
+gradle.addBuildListener(new BuildListener() {
+    @Override
+    void buildStarted(Gradle gradle) {
+        println "buildStarted"
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+        println "settingsEvaluated"
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+        println "projectsLoaded"
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        println "projectsEvaluated"
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        println "buildFinished"
+    }
+})

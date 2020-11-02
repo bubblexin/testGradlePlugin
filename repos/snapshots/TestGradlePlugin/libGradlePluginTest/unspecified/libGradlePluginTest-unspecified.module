@@ -1,0 +1,81 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "TestGradlePlugin",
+    "module": "libGradlePluginTest",
+    "version": "unspecified",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.5",
+      "buildId": "voykx3722nhsdcw2eckyl2ovsm"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 7,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "libGradlePluginTest-unspecified.jar",
+          "url": "libGradlePluginTest-unspecified.jar",
+          "size": 4832,
+          "sha512": "31a09ecafe336971affc6548ff2bbe2587232cf5ab9c28a719464fc1a7d568f76721ea7cd8fdda90feb3e02346d216d8bd12b7b1f5316163899125f5568bea7c",
+          "sha256": "3f17bb436b5d448652cbd4ae87f67e36a9924b50623a204fde1d2d1cbff1fbdc",
+          "sha1": "58af3bd91f8a9cbdf8ca8157d5e02a4e241c5d8a",
+          "md5": "cdb9959b31b27e914b2a3ac8a20bb62b"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 7,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.3.72"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "4.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "libGradlePluginTest-unspecified.jar",
+          "url": "libGradlePluginTest-unspecified.jar",
+          "size": 4832,
+          "sha512": "31a09ecafe336971affc6548ff2bbe2587232cf5ab9c28a719464fc1a7d568f76721ea7cd8fdda90feb3e02346d216d8bd12b7b1f5316163899125f5568bea7c",
+          "sha256": "3f17bb436b5d448652cbd4ae87f67e36a9924b50623a204fde1d2d1cbff1fbdc",
+          "sha1": "58af3bd91f8a9cbdf8ca8157d5e02a4e241c5d8a",
+          "md5": "cdb9959b31b27e914b2a3ac8a20bb62b"
+        }
+      ]
+    }
+  ]
+}

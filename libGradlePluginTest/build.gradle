@@ -1,0 +1,103 @@
+plugins {
+//    id 'java-library'
+    id 'kotlin'
+    id 'java-gradle-plugin'
+    id 'maven'
+    id 'maven-publish'
+}
+//apply plugin: 'maven'
+project.ext.config = [
+        "moduleSettings"         : [
+                "versionName": "0.0.1",
+                "versionCode": 1
+        ],
+        "mavenRepositorySettings": [
+                "projectRepository" : "http://10.60.0.100:8081/repository/okayscript/",
+                "snapshotRepository": "http://10.60.0.100:8081/repository/okayscript_snapshot/",
+                "user"              : "wanghao",
+                "password"          : "123456"
+        ],
+        "mavenLibraySettings"    : [
+                "libName"   : "dev",
+                "artifactId": "dev",
+                "groupId"   : "com.okay.smartteacher"
+        ]
+]
+
+publishing {
+    publications {
+//        publishPubNamePublicationToMavenLocal {
+//
+//        }
+        maven(MavenPublication) {
+            groupId = 'com.okay.smartteacher'
+            artifactId = 'dev'
+            version = '0.0.1'
+            // 组件类型，此处是 Java 类型
+            from components.java
+        }
+    }
+
+    /**
+     * 调用 publishMavenPublicationToMavenLocal 将插件打包到本地
+     *     publishMavenPublicationToMavenRepository
+     * 本地仓库地址 ：/Users/[用户名]/.m2/repository
+     */
+    repositories{
+        maven {
+            def releasesRepoUrl = "$rootDir/repos/releases"
+            def snapshotsRepoUrl = "$rootDir/repos/snapshots"
+//            def snapshotsRepoUrl = "$buildDir/repos/snapshots"
+            url = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
+        }
+    }
+}
+
+//uploadArchives {
+//    repositories.mavenDeployer {
+
+// 配置本地仓库路径，项目根目录下的repository目录中
+//        repository(url: uri('/Users/linxin/Maven/repository'))
+//        pom.groupId = "com.okay.testGradlePlugin" // 唯一标识（通常为模块包名，也可以任意）
+//        pom.artifactId = "testGradlePlugin" // 项目名称（通常为类库模块名称，也可以任意）
+//        pom.version = "1.0.0"      // 版本号
+//    }
+//}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+gradlePlugin {
+    // Defines the plugin
+    plugins {
+//        simplePlugin{
+//            id = 'com.okay.com.okay.libgradleplugintest'
+//            implementationClass = 'com.okay.com.okay.libgradleplugintest.SimplePlugin'
+//        }
+
+        // 声明插件信息
+        simplePlugin {
+            // 插件 id
+            id = 'com.okay.smartteacher'
+            // 插件的实现类
+            implementationClass = 'com.okay.libgradleplugintest.SimplePlugin'
+        }
+    }
+}
+
+//task copy(type: Copy, group:"Custom", description:"task description"){
+//    from "src"
+//    into "dest"
+//}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+//    testImplementation 'junit:junit:4.+'
+    // import Android Gradle Plugin
+    implementation 'com.android.tools.build:gradle:4.1.0'
+
+//    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+}

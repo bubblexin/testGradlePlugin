@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.okay.libgradleplugintest</groupId>
+  <artifactId>com.okay.libgradleplugintest.gradle.plugin</artifactId>
+  <versioning>
+    <latest>unspecified</latest>
+    <release>unspecified</release>
+    <versions>
+      <version>unspecified</version>
+    </versions>
+    <lastUpdated>20201027072537</lastUpdated>
+  </versioning>
+</metadata>

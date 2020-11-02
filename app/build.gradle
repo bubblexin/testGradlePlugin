@@ -1,0 +1,130 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+//    id 'com.okay.testGradlePlugin.testGradlePlugin'
+//    id 'com.okay.smartteacher.dev'
+//    id 'com.okay.smartteacher'
+}
+//apply plugin: Sim
+
+apply plugin: 'com.example.plugin'
+test{
+    name "LinXin"
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        applicationId "com.okay.testgradleplugin"
+        minSdkVersion 22
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    flavorDimensions 'normal'
+    productFlavors {
+        qq {
+            dimension 'normal'
+        }
+        baidu {
+            dimension 'normal'
+        }
+    }
+}
+
+class GreetingPluginExtension {
+    String msg = "Hello GreetingPluginExtension"
+    String hi = "test"
+}
+
+/**
+ *
+ * Plugin 接口泛型参数可选 <Project>、<Settings>、<Gradle>
+ * <Project> 可以让 gradle plugin 在 build script 环境工作
+ * <Settings> 可以让 gradle plugin 在 settings script 环境工作
+ * <Gradle> 可以让 gradle plugin 在 initialization script 环境工作
+ */
+class GreetingPlugin implements Plugin<Project> {
+
+    /**
+     * When the plugin is applied to a project, Gradle creates an instance of the plugin class and calls the instance’s Plugin.apply() method
+     * @param project
+     */
+    @Override
+    void apply(Project project) {
+        // Add the 'greeting' extension object
+        def extension = project.extensions.create('greetingTest', GreetingPluginExtension)
+        // Add a task that uses configuration from the extension object
+        project.task('hello') {
+            doLast {
+                println extension.msg
+                println(project.rootProject.name)
+            }
+        }
+    }
+}
+
+apply plugin: GreetingPlugin
+greetingTest.msg = 'Hi from Gradle'
+
+// Configure the extension using a DSL block
+// name needs to match the extension object name
+// 当执行闭包时，扩展对象上的字段将基于标准Groovy闭包委托功能映射到闭包内的变量。
+greetingTest {
+    msg = 'Hi from block'
+    hi = 'testtttt'
+}
+
+dependencies {
+//    compileOnly "com.android.tools.build:gradle:4.1.0"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+//    api project(':mylibrary')
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+//    implementation 'com.okay.smartteacher:dev:0.0.1'
+}
+project.afterEvaluate {
+    println "app build.gradle afterEvaluate"
+}
+project.beforeEvaluate{
+    println "app build.gradle beforeEvaluate"
+}
+gradle.taskGraph.whenReady {task->
+    task.allTasks.forEach{
+        println "--------> ${it.name} ----> ${it.class.name}"
+    }
+    println "${task} -----> "
+}
+
+//gradle.taskGraph.beforeTask {
+//    println "taskGraph beforeTask"
+//}
+//
+//gradle.taskGraph.afterTask {
+//    println "taskGraph afterTask"
+//}
