@@ -8,7 +8,9 @@ plugins {
 //apply plugin: Sim
 
 apply plugin: 'com.example.plugin'
-test{
+
+testExtension {
+    // Configure 阶段
     name "LinXin"
 }
 
@@ -111,11 +113,11 @@ dependencies {
 project.afterEvaluate {
     println "app build.gradle afterEvaluate"
 }
-project.beforeEvaluate{
+project.beforeEvaluate {
     println "app build.gradle beforeEvaluate"
 }
-gradle.taskGraph.whenReady {task->
-    task.allTasks.forEach{
+gradle.taskGraph.whenReady { task ->
+    task.allTasks.forEach {
         println "--------> ${it.name} ----> ${it.class.name}"
     }
     println "${task} -----> "

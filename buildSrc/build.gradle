@@ -19,6 +19,6 @@ java {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     // 有的 gradle 版本在编码是会找不到 Plugin 等类，需要加上如下依赖
-//    implementation "com.android.tools.build:gradle:4.1.0"
+    implementation "com.android.tools.build:gradle:4.1.0"
 }
 
